@@ -460,6 +460,14 @@ body {
 .section_numbers div {
   padding: 24px;
   font-size: 14px;
+  border-radius: 8px;
+  grid-row-gap: 16px;
+  background-color: #fff;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+  font-weight: 500;
+  display: flex;
 }
 
 .section_numbers h1 {
