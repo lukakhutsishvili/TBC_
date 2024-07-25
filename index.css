@@ -1,8 +1,30 @@
+@font-face {
+  font-family: "TBCX";
+  src: url("./assets/fonts/TBCXRegular.dee156cc.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TBCX";
+  src: url("./assets/fonts/TBCXMedium.8ef1248a.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TBCX";
+  src: url("./assets/fonts/TBCXBold.6db5e61d.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -28,6 +50,10 @@ body {
   bottom: auto;
   left: 0;
   right: 0;
+  transition: background-color 0.5s ease;
+}
+.header.bg-changed {
+  background-color: #f9fafa;
 }
 .header_container {
   z-index: 103;
@@ -67,18 +93,18 @@ body {
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  width: 25px;
-  height: 25px;
+  width: 36px;
+  height: 32px;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: 0.5s ease-in-out;
-  -moz-transition: 0.5s ease-in-out;
-  -o-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
+  -webkit-transition: 0.7s ease-in-out;
+  -moz-transition: 0.7s ease-in-out;
+  -o-transition: 0.7s ease-in-out;
+  transition: 0.7s ease-in-out;
   cursor: pointer;
-  padding-right: 8px;
+  padding: 8px;
 }
 
 #header_menu_button span {
@@ -91,10 +117,10 @@ body {
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: 0.25s ease-in-out;
-  -moz-transition: 0.25s ease-in-out;
-  -o-transition: 0.25s ease-in-out;
-  transition: 0.25s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 #header_menu_button span:nth-child(1) {
@@ -149,4 +175,128 @@ body {
   height: 2px;
   top: 8px;
   left: 0px;
+}
+
+#menu {
+  opacity: 0;
+  background-color: #f9fafa;
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  transition: opacity 0.6s linear;
+}
+#menu:nth-child(1) {
+  transition: opacity 0.6s linear;
+
+  background-color: #fff;
+}
+
+#menu.open {
+  opacity: 1;
+}
+
+.mobile_menu_dropdown_div {
+  padding: 32px 0px;
+  width: 100%;
+  border-bottom: 1px solid #d1d5d6;
+  position: relative;
+}
+
+.mobile_menu_dropdown_div_text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 700;
+  color: #141719;
+  align-items: center;
+  width: 100%;
+  padding: 0px 15px;
+}
+
+.mobile_menu_dropdown_div_text h1 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #141719;
+}
+
+.mobile_menu_dropdown_div_list_1 {
+  overflow: hidden;
+  height: 0;
+  transition-property: height;
+  transition-duration: 1000ms;
+}
+
+.mobile_menu_dropdown_div_list_2 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  padding: 20px 15px 0px 15px;
+}
+
+.mobile_menu_dropdown_div_list_1.open {
+  height: 134px;
+  overflow: hidden;
+}
+.mobile_menu_list {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.mobile_dropdown_arrow {
+  transition: transform 0.6s;
+}
+.active_mobile_drop_arrow.mobile_dropdown_arrow {
+  transform: rotate(180deg);
+}
+
+.header_menu-mobile_contacts {
+  padding: 32px 15px;
+}
+
+.header_menu-mobile_contacts h3 {
+  font-size: 16px;
+  color: #141719;
+  font: bold;
+}
+.header_menu_contact_list {
+  padding-top: 32px;
+  padding-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 32px;
+}
+.header_menu_contact_list p {
+  font-weight: 500;
+}
+
+.header_menu_social {
+  display: flex;
+  column-gap: 15px;
+  margin-top: 24px;
+}
+
+.header_menu_social > * {
+  background-color: #f9fafa;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+}
+
+.header_footer {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  font-size: 12px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.linkdiv {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  display: flex;
+  column-gap: 4px;
 }
