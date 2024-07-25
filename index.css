@@ -36,6 +36,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.7;
+  padding-top: 80px;
 }
 
 .header {
@@ -295,8 +296,89 @@ body {
 }
 
 .linkdiv {
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding: 16px 15px;
   display: flex;
   column-gap: 4px;
+}
+
+.linkdiv p {
+  color: #141719;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.first_section {
+  min-height: 360px;
+  background-image: url("assets/images/library.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 172px 15px 20px 36px;
+  color: white;
+  position: relative;
+  margin-top: 32px;
+  margin-bottom: 36px;
+}
+
+.first_section h1 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.blue_button {
+  background-image: linear-gradient(15deg, #001682, #3240e5);
+  column-gap: 6px;
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.33;
+  display: flex;
+}
+
+.banner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.firs_section_text_div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 4;
+}
+
+.text_section {
+  padding-top: 36px;
+  padding-bottom: 36px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.text_section p {
+  font-size: 24px;
+  color: #141719;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.first_scroll_section {
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
+
+.first_carusel_div{
+  
 }
