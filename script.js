@@ -2,11 +2,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const hamburgerMenu = document.getElementById("header_menu_button");
   const menu = document.getElementById("menu");
   const header = document.querySelector(".header");
+  const displayDiv = document.querySelector(".displayDiv");
 
   hamburgerMenu.addEventListener("click", function () {
     this.classList.toggle("open");
     menu.classList.toggle("open");
     header.classList.toggle("bg-changed");
+    displayDiv.classList.toggle("open");
   });
 });
 
@@ -32,6 +34,32 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       dropdownArrow.classList.toggle("active_mobile_drop_arrow");
+      dropdownList.classList.toggle("open");
+    });
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdownDivs = document.querySelectorAll(".footer_dropdown_div");
+
+  dropdownDivs.forEach((dropdownDiv) => {
+    const dropdownArrow = dropdownDiv.querySelector(".footer_dropdown_arrow");
+    const dropdownList = dropdownDiv.querySelector(
+      ".footer_dropdown_div_list_1"
+    );
+
+    dropdownDiv.addEventListener("click", () => {
+      dropdownDivs.forEach((otherDiv) => {
+        if (otherDiv !== dropdownDiv) {
+          const otherArrow = otherDiv.querySelector(".footer_dropdown_arrow");
+          const otherList = otherDiv.querySelector(
+            ".footer_dropdown_div_list_1"
+          );
+          otherArrow.classList.remove("active_footer_drop_arrow");
+          otherList.classList.remove("open");
+        }
+      });
+
+      dropdownArrow.classList.toggle("active_footer_drop_arrow");
       dropdownList.classList.toggle("open");
     });
   });

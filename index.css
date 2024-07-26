@@ -25,11 +25,22 @@
   box-sizing: border-box;
 }
 
+img {
+  -webkit-user-drag: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+.displayDiv {
+  display: block;
+}
+.displayDiv.open {
+  display: none;
+}
 html {
   scroll-behavior: smooth;
 }
 body {
-  height: 100vh;
+  min-height: 100vh;
   color: #555f62;
   background-color: #f9fafa;
   font-family: "TBCX", sans-serif;
@@ -516,6 +527,25 @@ h2 {
   padding-bottom: 20px;
 }
 
+.little_image_div {
+  position: absolute;
+  width: 78px;
+  height: 56px;
+  right: 0px;
+  top: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px 0px 0px 6px;
+  border-right: 1px solid #e1e4e5;
+}
+.little_image_div img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
 .slider-container {
   width: 100%;
 }
@@ -542,7 +572,9 @@ h2 {
   border-radius: 6px;
   font-size: 12px;
   padding-bottom: 30px;
+  position: relative;
 }
+
 
 .indicator-container {
   margin-top: 20px;
@@ -625,4 +657,189 @@ h2 {
   line-height: 1.33;
   margin-top: 0px;
   color: #182cc0;
+}
+
+.section_home-hero {
+  margin-top: 32px;
+  margin-bottom: 36px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 172px 15px 20px;
+  background-image: url("assets/images/mobile/private-banker-pic.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section_home-hero h1 {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.section_home-hero p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.blue_button.second {
+  height: 50px;
+}
+.second_blue_button_text {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.33;
+}
+
+.section_awards-swiper {
+  margin-top: 36px;
+  margin-bottom: 36px;
+}
+
+#footer {
+  padding-top: 36px;
+}
+
+.footer_top {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  background-color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #d1d5d6;
+}
+
+.footer_dropdown_div {
+  padding: 32px 0px;
+  width: 100%;
+  border-bottom: 1px solid #d1d5d6;
+  position: relative;
+}
+
+.footer_dropdown_div_text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 700;
+  color: #141719;
+  align-items: center;
+  width: 100%;
+  padding: 0px 15px;
+}
+
+.footer_dropdown_div_text h1 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #141719;
+}
+
+.footer_dropdown_div_list_1 {
+  overflow: hidden;
+  height: 0;
+  transition-property: height;
+  transition-duration: 1000ms;
+}
+
+.footer_dropdown_div_list_2 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  padding: 20px 15px 0px 15px;
+}
+
+.footer_dropdown_div_list_1.open {
+  height: 88px;
+  overflow: hidden;
+}
+.footer_list {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.footer_dropdown_arrow {
+  transition: transform 0.6s;
+}
+.active_footer_drop_arrow.footer_dropdown_arrow {
+  transform: rotate(180deg);
+}
+
+.footer_mobile_contacts {
+  padding: 32px 15px;
+}
+
+.footer_mobile_contacts h3 {
+  font-size: 16px;
+  color: #141719;
+  font: bold;
+}
+.footer_contact_list {
+  padding-top: 32px;
+  padding-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 32px;
+}
+.footer_contact_list p {
+  font-weight: 500;
+}
+
+.footer_social {
+  display: flex;
+  column-gap: 15px;
+  margin-top: 24px;
+}
+
+.footer_social > * {
+  background-color: #f9fafa;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+}
+
+.footer_footer {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  font-size: 12px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.footer_top div {
+  height: 40px;
+  background-color: #f9fafa;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.change_language {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.change_language p {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.footer_footer p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.footer_white_div {
+  background-color: white;
 }
