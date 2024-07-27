@@ -48,10 +48,12 @@ h3 {
 }
 
 .displayDiv {
-  display: block;
+  min-height: 100vh;
+  overflow-y: unset;
 }
 .displayDiv.open {
-  display: none;
+  height: 100vh;
+  overflow-y: hidden;
 }
 html {
   scroll-behavior: smooth;
@@ -193,7 +195,7 @@ h2 {
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
   width: 20px;
-  height: 2px;
+  height: 4px;
   top: -6px;
   left: 1px;
 }
@@ -209,7 +211,7 @@ h2 {
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
   width: 20px;
-  height: 2px;
+  height: 4px;
   top: 8px;
   left: 0px;
 }
@@ -595,13 +597,15 @@ h2 {
   margin-top: 20px;
   width: 100%;
   height: 2px;
-  background-color: gray;
+  background-color: #d1d5d6;
+  border-radius: 1px;
 }
 
 .indicator {
   height: 100%;
-  width: 20%;
-  background-color: blue;
+  width: 137px;
+  background: #182cc0;
+  border-radius: 1px;
   position: relative;
   left: 0;
 }
@@ -1027,4 +1031,164 @@ h2 {
 
 .footer_white_div {
   background-color: white;
+}
+.indicator_div {
+  padding: 0px 15px;
+}
+
+/* media 479 */
+
+@media (min-width: 479px) {
+  h1,
+  h2,
+  h3 {
+    color: #141719;
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .header {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  .header_buttons {
+    column-gap: 16px;
+  }
+  .header_text {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .linkdiv img {
+    display: none;
+  }
+  .linkdiv {
+    padding-left: 45px;
+  }
+  .first_section h1 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+  }
+  .first_section {
+    padding: 240px 45px 36px;
+  }
+  .blue_button {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.33;
+    height: 49.45px;
+  }
+  .text_section p {
+    font-size: 28px;
+  }
+  .text_section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  .first_scroll_section p {
+    font-size: 24px;
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  .carusel_div {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  .grid_card_content p {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    padding: 0;
+  }
+  .section_numbers {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  .section_numbers div {
+    padding: 40px 48px;
+  }
+  .section_numbers h1 {
+    color: #141719;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .section_numbers p {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .offers_text {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  .slider {
+    margin-top: 28px;
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .indicator_div {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  .get_app_section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+  .get_app_section img {
+    margin-top: 28px;
+  }
+  .get_app_section p {
+    margin-top: 28px;
+  }
+  .download_button p {
+    margin-top: 0;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.33;
+  }
+  .offers_swiper {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .offers_swiper_slider {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  .slideImg {
+    width: 328px;
+    height: 139px;
+    object-fit: cover;
+  }
+  .slider_content_div h2 {
+    font-size: 14px;
+  }
+  .offers_swiper_slide img {
+    border-radius: 6px 6px 0px 0px;
+    width: 326px;
+    height: 139px;
+    object-fit: cover;
+  }
+  .offers_swiper_indicator_div {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  .offers_swiper_indicator-container {
+    background-color: #d1d5d6;
+  }
+  .offers_swiper_indicator {
+    background: #182cc0;
+    border-radius: 1px;
+  }
 }

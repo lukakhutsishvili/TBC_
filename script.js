@@ -66,9 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// 1slideri
 const slider = document.querySelector(".slider");
 const indicator = document.querySelector(".indicator");
-const slideWidth =
+const indicatorContainer = document.querySelector(".indicator-container");
+
+let slideWidth =
   document.querySelector(".slide").offsetWidth +
   parseFloat(getComputedStyle(slider).gap);
 
@@ -108,12 +111,19 @@ slider.addEventListener("mousemove", (e) => {
 });
 
 function updateIndicator() {
+  if (!indicatorContainer) {
+    console.error("Indicator container not found");
+    return;
+  }
+
   const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
   const percentageScrolled = (slider.scrollLeft / maxScrollLeft) * 100;
-  const indicatorWidth = (indicator.clientWidth / slider.clientWidth) * 100;
-  const leftPosition = (percentageScrolled * (100 - indicatorWidth)) / 100;
 
-  indicator.style.left = `${leftPosition}%`;
+  const maxIndicatorMove =
+    indicatorContainer.clientWidth - indicator.clientWidth;
+  const leftPosition = (percentageScrolled * maxIndicatorMove) / 100;
+
+  indicator.style.left = `${leftPosition}px`;
 }
 
 function slideToNearestSlide() {
@@ -147,6 +157,7 @@ function smoothScrollTo(element, target, duration) {
     currentTime += increment;
     const val = easeInOutQuad(currentTime, start, change, duration);
     element.scrollLeft = val;
+    updateIndicator(); // Update the indicator during the scroll
     if (currentTime < duration) {
       requestAnimationFrame(animateScroll);
     }
@@ -167,17 +178,94 @@ function getScrollPercentageForNextImage() {
   return percentagePerSlide;
 }
 
+// Ensure the indicator is updated when the window is resized
+window.addEventListener("resize", () => {
+  updateIndicator();
+  // Adjust slideWidth on resize
+  slideWidth =
+    document.querySelector(".slide").offsetWidth +
+    parseFloat(getComputedStyle(slider).gap);
+});
+
+// Initial calculation of slide width and indicator position
+updateIndicator();
+
+//2slideri
 document.addEventListener("DOMContentLoaded", function () {
   const slider = document.querySelector(".offers_swiper_slider");
   const indicator = document.querySelector(".offers_swiper_indicator");
+  const indicatorContainer = document.querySelector(
+    ".offers_swiper_indicator-container"
+  );
   const slides = document.querySelectorAll(".offers_swiper_slide");
-  const slideWidth =
-    slides[0].offsetWidth + parseFloat(getComputedStyle(slider).gap);
 
+  let slideWidth =
+    slides[0].offsetWidth + parseFloat(getComputedStyle(slider).gap);
   let isDown = false;
   let startX;
   let scrollLeft;
 
+  function calculateSlideWidth() {
+    slideWidth =
+      slides[0].offsetWidth + parseFloat(getComputedStyle(slider).gap);
+  }
+
+  function updateIndicator() {
+    const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+    const percentageScrolled = (slider.scrollLeft / maxScrollLeft) * 100;
+    const maxIndicatorMove =
+      indicatorContainer.clientWidth - indicator.clientWidth;
+    const leftPosition = (percentageScrolled * maxIndicatorMove) / 100;
+    indicator.style.left = `${leftPosition}px`;
+  }
+
+  function slideToNearestSlide() {
+    const currentScroll = slider.scrollLeft;
+    const exactScrollPosition = currentScroll / slideWidth;
+    const currentSlideIndex = Math.round(exactScrollPosition);
+
+    const dragDistance = Math.abs(currentScroll - scrollLeft);
+    const dragPercentage = (dragDistance / slideWidth) * 100;
+
+    let finalScrollLeft = currentSlideIndex * slideWidth;
+
+    if (dragPercentage > 10) {
+      if (currentScroll > scrollLeft) {
+        finalScrollLeft += slideWidth * 0.6;
+      } else {
+        finalScrollLeft -= slideWidth * 0.6;
+      }
+    }
+
+    smoothScrollTo(slider, finalScrollLeft, 800);
+  }
+
+  function smoothScrollTo(element, target, duration) {
+    const start = element.scrollLeft;
+    const change = target - start;
+    const increment = 20;
+    let currentTime = 0;
+
+    const animateScroll = () => {
+      currentTime += increment;
+      const val = easeInOutQuad(currentTime, start, change, duration);
+      element.scrollLeft = val;
+      updateIndicator(); // Update the indicator during the scroll
+      if (currentTime < duration) {
+        requestAnimationFrame(animateScroll);
+      }
+    };
+    animateScroll();
+  }
+
+  function easeInOutQuad(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return (c / 2) * t * t + b;
+    t--;
+    return (-c / 2) * (t * (t - 2) - 1) + b;
+  }
+
+  // Event listeners for dragging functionality
   slider.addEventListener("mousedown", (e) => {
     isDown = true;
     startX = e.pageX - slider.offsetLeft;
@@ -210,6 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateIndicator();
   });
 
+  // Event listeners for touch functionality
   slider.addEventListener("touchstart", (e) => {
     isDown = true;
     startX = e.touches[0].pageX - slider.offsetLeft;
@@ -234,59 +323,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateIndicator();
   });
 
-  function updateIndicator() {
-    const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-    const percentageScrolled = (slider.scrollLeft / maxScrollLeft) * 100;
-    const indicatorWidth = (indicator.clientWidth / slider.clientWidth) * 100;
-    const leftPosition = (percentageScrolled * (100 - indicatorWidth)) / 100;
-    indicator.style.left = `${leftPosition}%`;
-  }
-
-  function slideToNearestSlide() {
-    const currentScroll = slider.scrollLeft;
-    const exactScrollPosition = currentScroll / slideWidth;
-    const currentSlideIndex = Math.round(exactScrollPosition);
-
-    const dragDistance = Math.abs(currentScroll - scrollLeft);
-    const dragPercentage = (dragDistance / slideWidth) * 100;
-
-    let finalScrollLeft = currentSlideIndex * slideWidth;
-
-    if (dragPercentage > 15) {
-      if (currentScroll > scrollLeft) {
-        finalScrollLeft += slideWidth * 0.4;
-      } else {
-        finalScrollLeft -= slideWidth * 0.4;
-      }
-    }
-
-    smoothScrollTo(slider, finalScrollLeft, 800);
-  }
-
-  function smoothScrollTo(element, target, duration) {
-    const start = element.scrollLeft;
-    const change = target - start;
-    const increment = 20;
-    let currentTime = 0;
-
-    const animateScroll = () => {
-      currentTime += increment;
-      const val = easeInOutQuad(currentTime, start, change, duration);
-      element.scrollLeft = val;
-      if (currentTime < duration) {
-        requestAnimationFrame(animateScroll);
-      }
-    };
-    animateScroll();
-  }
-
-  function easeInOutQuad(t, b, c, d) {
-    t /= d / 2;
-    if (t < 1) return (c / 2) * t * t + b;
-    t--;
-    return (-c / 2) * (t * (t - 2) - 1) + b;
-  }
-
   // Accessibility: Add keyboard controls
   slider.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
@@ -304,8 +340,19 @@ document.addEventListener("DOMContentLoaded", function () {
     slide.setAttribute("aria-roledescription", "slide");
     slide.setAttribute("aria-label", `${index + 1} of ${slides.length}`);
   });
+
+  // Ensure the indicator is updated when the window is resized
+  window.addEventListener("resize", () => {
+    calculateSlideWidth();
+    updateIndicator();
+  });
+
+  // Initial calculation of slide width and indicator position
+  calculateSlideWidth();
+  updateIndicator();
 });
 
+//slideri
 document.addEventListener("DOMContentLoaded", function () {
   const slider = document.querySelector(".section_awards_slider");
   const indicator = document.querySelector(".section_awards_indicator");
@@ -377,7 +424,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
     const percentageScrolled = (slider.scrollLeft / maxScrollLeft) * 100;
     const indicatorWidth = (indicator.clientWidth / slider.clientWidth) * 100;
-    const leftPosition = (percentageScrolled * (100 - indicatorWidth)) / 100;
+    const leftPosition = (percentageScrolled * (100 - indicatorWidth)) / 137;
     indicator.style.left = `${leftPosition}%`;
   }
 
@@ -393,9 +440,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (dragPercentage > 10) {
       if (currentScroll > scrollLeft) {
-        finalScrollLeft += slideWidth * 0.6;
+        finalScrollLeft += slideWidth * 0.8;
       } else {
-        finalScrollLeft -= slideWidth * 0.6;
+        finalScrollLeft -= slideWidth * 0.8;
       }
     }
 
