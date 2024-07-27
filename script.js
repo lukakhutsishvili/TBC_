@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   const dropdownDivs = document.querySelectorAll(".footer_dropdown_div");
 
@@ -93,7 +94,6 @@ slider.addEventListener("mouseup", () => {
     slideToNearestSlide();
   }
   isDown = false;
-  console.log(isDown);
 });
 
 slider.addEventListener("mousemove", (e) => {
@@ -118,14 +118,155 @@ function updateIndicator() {
 
 function slideToNearestSlide() {
   const currentScroll = slider.scrollLeft;
-
   const exactScrollPosition = currentScroll / slideWidth;
   const currentSlideIndex = Math.round(exactScrollPosition);
 
-  const newScrollLeft = currentSlideIndex * slideWidth;
+  const dragDistance = Math.abs(currentScroll - scrollLeft);
+  const dragPercentage = (dragDistance / slideWidth) * 100;
 
-  slider.scrollTo({
-    left: newScrollLeft,
-    behavior: "smooth",
-  });
+  let finalScrollLeft = currentSlideIndex * slideWidth;
+
+  if (dragPercentage > 15) {
+    if (currentScroll > scrollLeft) {
+      finalScrollLeft += slideWidth * 0.8;
+    } else {
+      finalScrollLeft -= slideWidth * 0.8;
+    }
+  }
+
+  smoothScrollTo(slider, finalScrollLeft, 800); 
 }
+
+function smoothScrollTo(element, target, duration) {
+  const start = element.scrollLeft;
+  const change = target - start;
+  const increment = 20;
+  let currentTime = 0;
+
+  const animateScroll = () => {
+    currentTime += increment;
+    const val = easeInOutQuad(currentTime, start, change, duration);
+    element.scrollLeft = val;
+    if (currentTime < duration) {
+      requestAnimationFrame(animateScroll);
+    }
+  };
+  animateScroll();
+}
+
+function easeInOutQuad(t, b, c, d) {
+  t /= d / 2;
+  if (t < 1) return (c / 2) * t * t + b;
+  t--;
+  return (-c / 2) * (t * (t - 2) - 1) + b;
+}
+
+function getScrollPercentageForNextImage() {
+  const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+  const percentagePerSlide = (slideWidth / maxScrollLeft) * 100;
+  return percentagePerSlide;
+}
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const slider = document.querySelector(".offers_swiper_slider");
+  const indicator = document.querySelector(".offers_swiper_indicator");
+  const slides = document.querySelectorAll(".offers_swiper_slide");
+  const slideWidth =
+    slides[0].offsetWidth + parseFloat(getComputedStyle(slider).gap);
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  slider.addEventListener("mousedown", (e) => handleDragStart(e));
+  slider.addEventListener("mouseleave", handleDragEnd);
+  slider.addEventListener("mouseup", handleDragEnd);
+  slider.addEventListener("mousemove", (e) => handleDragging(e));
+
+  slider.addEventListener("touchstart", (e) => handleDragStart(e.touches[0]));
+  slider.addEventListener("touchend", handleDragEnd);
+  slider.addEventListener("touchmove", (e) => handleDragging(e.touches[0]));
+
+  function handleDragStart(e) {
+    isDown = true;
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+    slider.classList.add("active");
+  }
+
+  function handleDragEnd() {
+    if (isDown) {
+      slideToNearestSlide();
+    }
+    isDown = false;
+    slider.classList.remove("active");
+  }
+
+  function handleDragging(e) {
+    if (!isDown) return;
+    e.preventDefault();
+    const currentX = e.pageX - slider.offsetLeft;
+    const walk = currentX - startX;
+    slider.scrollLeft = scrollLeft - walk;
+    updateIndicator();
+  }
+
+  function debounce(func, wait = 20, immediate = true) {
+    let timeout;
+    return function () {
+      const context = this,
+        args = arguments;
+      const later = function () {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
+
+  const updateIndicatorDebounced = debounce(updateIndicator);
+
+  function updateIndicator() {
+    const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+    const percentageScrolled = (slider.scrollLeft / maxScrollLeft) * 100;
+    const indicatorWidth = (indicator.clientWidth / slider.clientWidth) * 100;
+    const leftPosition = (percentageScrolled * (100 - indicatorWidth)) / 100;
+    indicator.style.left = `${leftPosition}%`;
+  }
+
+  function slideToNearestSlide() {
+    const currentScroll = slider.scrollLeft;
+    const exactScrollPosition = currentScroll / slideWidth;
+    const currentSlideIndex = Math.round(exactScrollPosition);
+    const newScrollLeft = currentSlideIndex * slideWidth;
+    slider.scrollTo({
+      left: newScrollLeft,
+      behavior: "smooth",
+    });
+    updateIndicatorDebounced();
+  }
+
+  // Accessibility: Add keyboard controls
+  slider.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") {
+      slider.scrollBy({ left: slideWidth, behavior: "smooth" });
+    } else if (e.key === "ArrowLeft") {
+      slider.scrollBy({ left: -slideWidth, behavior: "smooth" });
+    }
+  });
+
+  // Add ARIA roles for accessibility
+  slider.setAttribute("role", "region");
+  slider.setAttribute("aria-label", "Image Carousel");
+  slides.forEach((slide, index) => {
+    slide.setAttribute("role", "group");
+    slide.setAttribute("aria-roledescription", "slide");
+    slide.setAttribute("aria-label", `${index + 1} of ${slides.length}`);
+  });
+});
