@@ -30,6 +30,23 @@ img {
   -webkit-user-drag: none;
   pointer-events: none;
 }
+h3 {
+  color: #141719;
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.no-select {
+  user-select: none;
+}
+
 .displayDiv {
   display: block;
 }
@@ -662,7 +679,7 @@ h2 {
   font-size: 14px;
 }
 
-.offers_swiper_slider_content_div h3 {
+.offers_swiper_slide h3 {
   font-size: 14px;
 }
 
@@ -681,11 +698,101 @@ h2 {
   width: 350px;
   height: 208px;
 }
-h3 {
-  color: #141719;
-  margin-top: 0;
-  font-size: 24px;
-  font-weight: 700;
+.section_awards_slider:active {
+  cursor: grabbing;
+}
+
+.section_awards_slider_container {
+  width: 100%;
+}
+.section_awards_slide h3 {
+  font-size: 14px;
+  line-height: 30px;
+}
+.section_awards_slider {
+  display: flex;
+  gap: 1rem;
+  overflow-x: hidden;
+  cursor: grab;
+  margin-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.section_awards-slider:active {
+  cursor: grabbing;
+}
+
+.section_awards_slide {
+  min-width: 275px;
+  height: auto;
+  background-color: white;
+  color: white;
+  border-radius: 6px;
+  font-size: 12px;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  -webkit-user-drag: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.section_awards-indicator_container {
+  margin-top: 20px;
+  width: 100%;
+  height: 2px;
+  background-color: gray;
+}
+
+.section_awards_indicator {
+  height: 100%;
+  width: 20%;
+  background-color: blue;
+  position: relative;
+  left: 0;
+}
+
+.section_awards_slider_content_div {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section_awards_slide p {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 400;
+  color: #6f787b;
+  margin-bottom: 4px;
+}
+
+.section_awards_slider_content_div p {
+  margin-bottom: 12px;
+}
+
+.section_awards_slide img {
+  border-radius: 6px 6px 0px 0px;
+  width: 118px;
+  height: 52px;
+}
+
+.section_awards_indicator-container {
+  margin-top: 20px;
+  width: 100%;
+  height: 2px;
+  background-color: gray;
+}
+
+.section_awards_indicator {
+  height: 100%;
+  width: 20%;
+  background-color: blue;
+  position: relative;
+  left: 0;
 }
 
 .get_app_section {
