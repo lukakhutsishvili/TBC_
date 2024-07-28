@@ -25,6 +25,10 @@
   box-sizing: border-box;
 }
 
+.headerlogo-tablet {
+  display: none;
+}
+
 img {
   -webkit-user-drag: none;
   -webkit-user-drag: none;
@@ -1036,6 +1040,43 @@ h2 {
   padding: 0px 15px;
 }
 
+.offers_swiper_indicator_div {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.offers_swiper_indicator-container {
+  background-color: #d1d5d6;
+}
+.offers_swiper_indicator {
+  background: #182cc0;
+  border-radius: 1px;
+}
+
+.offers_swiper_indicator_div {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.offers_swiper_indicator-container {
+  background-color: #d1d5d6;
+}
+.offers_swiper_indicator {
+  background: #182cc0;
+  border-radius: 1px;
+}
+.section_awards_indicator-container-div {
+  padding: 0 15px;
+}
+.section_awards_indicator-container-div {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.section_awards_indicator-container {
+  background-color: #d1d5d6;
+}
+.offers_swiper_indicator {
+  background: #182cc0;
+  border-radius: 1px;
+}
 /* media 479 */
 
 @media (min-width: 479px) {
@@ -1190,5 +1231,68 @@ h2 {
   .offers_swiper_indicator {
     background: #182cc0;
     border-radius: 1px;
+  }
+  .section_home-hero {
+    margin-top: 32px;
+    margin-bottom: 40px;
+    padding: 240px 45px 36px;
+  }
+  .section_home-hero h1 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+  }
+  .section_awards-swiper {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .section_awards_slider {
+    padding-left: 45px;
+    padding-right: 45px;
+    margin-top: 28px;
+  }
+  .section_awards_indicator-container-div {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  .section_awards_slide {
+    padding: 28px;
+  }
+  .footer_top {
+    padding-top: 36px;
+    padding-bottom: 36px;
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+  .footer_dropdown_div {
+    padding: 36px 45px;
+  }
+  .footer_dropdown_div_text {
+    padding: 0;
+  }
+  .footer_dropdown_div_text h1 {
+    font-size: 24px;
+    line-height: 1.5;
+  }
+  .footer_dropdown_div_list_2 {
+    padding: 36px 0px 0px 0px;
+  }
+  .footer_dropdown_div_list_1.open {
+    height: 114px;
+  }
+  .footer_mobile_contacts {
+    padding: 56px 45px;
+  }
+  .footer_mobile_contacts h3 {
+    font-size: 24px;
+    color: #141719;
+  }
+}
+
+/* tablet */
+@media (min-width: 768px) {
+  .headerlogo-mobile {
+    display: none;
   }
 }
