@@ -92,6 +92,11 @@
   visibility: hidden;
 }
 
+.svg1.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
 .subscribe {
   display: flex;
   align-items: center;
