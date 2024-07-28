@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    smoothScrollTo(slider, finalScrollLeft, 400); // Adjusted duration to 400ms
+    smoothScrollTo(slider, finalScrollLeft, 700); // Adjusted duration to 400ms
   }
 
   function smoothScrollTo(element, target, duration) {
@@ -309,7 +309,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    smoothScrollTo(slider, finalScrollLeft, 800);
+    smoothScrollTo(slider, finalScrollLeft, 700);
   }
 
   function smoothScrollTo(element, target, duration) {
@@ -645,7 +645,7 @@ document.addEventListener("DOMContentLoaded", function () {
       currentTime += increment;
       const val = easeInOutQuad(currentTime, start, change, duration);
       element.scrollLeft = val;
-      updateIndicator(); // Update the indicator during the scroll
+      updateIndicator();
       if (currentTime < duration) {
         requestAnimationFrame(animateScroll);
       }
@@ -660,7 +660,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return (-c / 2) * (t * (t - 2) - 1) + b;
   }
 
-  // Event listeners for dragging functionality
   slider.addEventListener("mousedown", (e) => {
     isDown = true;
     startX = e.pageX - slider.offsetLeft;
@@ -693,7 +692,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateIndicator();
   });
 
-  // Event listeners for touch functionality
   slider.addEventListener("touchstart", (e) => {
     isDown = true;
     startX = e.touches[0].pageX - slider.offsetLeft;
@@ -718,7 +716,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateIndicator();
   });
 
-  // Accessibility: Add keyboard controls
   slider.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
       slider.scrollBy({ left: slideWidth, behavior: "smooth" });
@@ -727,7 +724,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Add ARIA roles for accessibility
   slider.setAttribute("role", "region");
   slider.setAttribute("aria-label", "Image Carousel");
   slides.forEach((slide, index) => {
@@ -736,13 +732,116 @@ document.addEventListener("DOMContentLoaded", function () {
     slide.setAttribute("aria-label", `${index + 1} of ${slides.length}`);
   });
 
-  // Ensure the indicator is updated when the window is resized
   window.addEventListener("resize", () => {
     calculateSlideWidth();
     updateIndicator();
   });
 
-  // Initial calculation of slide width and indicator position
   calculateSlideWidth();
   updateIndicator();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const menu = document.querySelector(".desktop_menu");
+  const dropdownMenus = document.querySelectorAll(".dropdown_menu");
+  const triggers = document.querySelectorAll(".header_desktop_dropdown");
+  let activeDropdown = null;
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const dropdownMenu = trigger.querySelector(".dropdown_menu");
+
+      if (menu.style.opacity === "1" && activeDropdown === dropdownMenu) {
+        menu.style.opacity = "0";
+        menu.style.zIndex = "-1";
+        menu.style.transition = "opacity 1s, z-index 0s 1s";
+
+        dropdownMenus.forEach((menu) => {
+          menu.style.opacity = "0";
+          menu.style.zIndex = "-1";
+          menu.style.transition = "opacity 0.5s";
+        });
+
+        activeDropdown = null;
+      } else {
+        menu.style.opacity = "1";
+        menu.style.zIndex = "50";
+        menu.style.transition = "opacity 1s";
+
+        dropdownMenus.forEach((menu) => {
+          menu.style.opacity = "0";
+          menu.style.zIndex = "-1";
+          menu.style.transition = "opacity 0.5s";
+        });
+
+        setTimeout(() => {
+          dropdownMenu.style.opacity = "1";
+          dropdownMenu.style.zIndex = "50";
+          dropdownMenu.style.transition = "opacity 0.5s";
+        }, 1000);
+
+        activeDropdown = dropdownMenu;
+      }
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const menu = document.querySelector(".desktop_menu");
+  const dropdownMenus = document.querySelectorAll(".dropdown_menu");
+  const triggers = document.querySelectorAll(".header_desktop_dropdown");
+  let activeDropdown = null;
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const dropdownMenu = trigger.querySelector(".dropdown_menu");
+
+      // Check if the clicked trigger is already active
+      const isActive = trigger.classList.contains("active");
+
+      if (isActive) {
+        // Hide the menu and the dropdown
+        menu.style.opacity = "0";
+        menu.style.zIndex = "-1";
+        menu.style.transition = "opacity 1s, z-index 0s 1s";
+
+        dropdownMenus.forEach((menu) => {
+          menu.style.opacity = "0";
+          menu.style.zIndex = "-1";
+          menu.style.transition = "opacity 0.5s";
+        });
+
+        triggers.forEach((trigger) => trigger.classList.remove("active"));
+
+        activeDropdown = null;
+      } else {
+        // Show the main menu
+        menu.style.opacity = "1";
+        menu.style.zIndex = "50";
+        menu.style.transition = "opacity 1s";
+
+        // Hide all dropdown menus first
+        dropdownMenus.forEach((menu) => {
+          menu.style.opacity = "0";
+          menu.style.zIndex = "-1";
+          menu.style.transition = "opacity 0.5s";
+        });
+
+        // Show the clicked dropdown menu after 1 second
+        setTimeout(() => {
+          dropdownMenu.style.opacity = "1";
+          dropdownMenu.style.zIndex = "50";
+          dropdownMenu.style.transition = "opacity 0.5s";
+        }, 1000);
+
+        // Remove active class for indicator animation from all triggers
+        triggers.forEach((trigger) => trigger.classList.remove("active"));
+
+        // Add active class for indicator animation to the clicked trigger
+        trigger.classList.add("active");
+
+        activeDropdown = dropdownMenu;
+      }
+    });
+  });
 });
