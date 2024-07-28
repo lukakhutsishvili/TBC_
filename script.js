@@ -1,3 +1,27 @@
+document.querySelector(".oval").addEventListener("click", function () {
+  // Get the SVG elements
+  const svg1 = this.querySelector(".svg1");
+  const svg2 = this.querySelector(".svg2");
+
+  // Get the whiteoval elements
+  const whiteovals = document.querySelectorAll(".whiteoval");
+
+  // Toggle visibility of the SVGs: show one and hide the other
+  if (svg1.classList.contains("hidden")) {
+    svg1.classList.remove("hidden");
+    svg2.classList.remove("visible");
+    whiteovals.forEach(function (whiteoval) {
+      whiteoval.classList.add("visible");
+    });
+  } else {
+    svg1.classList.add("hidden");
+    svg2.classList.add("visible");
+    whiteovals.forEach(function (whiteoval) {
+      whiteoval.classList.remove("visible");
+    });
+  }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   const hamburgerMenu = document.getElementById("header_menu_button");
   const menu = document.getElementById("menu");
