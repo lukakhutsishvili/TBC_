@@ -102,7 +102,6 @@ h2 {
   z-index: 103;
   width: 100%;
   height: 100%;
-  max-width: 1110px;
   column-gap: 24px;
   justify-content: space-between;
   display: flex;
@@ -1288,11 +1287,85 @@ h2 {
     font-size: 24px;
     color: #141719;
   }
+  .linkdiv {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
 }
 
 /* tablet */
 @media (min-width: 768px) {
   .headerlogo-mobile {
     display: none;
+  }
+  .headerlogo-tablet {
+    display: block;
+  }
+  .first_section {
+    margin-bottom: 50px;
+    margin-left: 45px;
+    margin-right: 45px;
+    border-radius: 6px;
+    padding: 240px 45px 36px;
+  }
+  .firs_section_text_div {
+    max-width: 450px;
+  }
+  .blue_button {
+    max-width: 152px;
+  }
+  .firs_section_text_div {
+    gap: 24px;
+  }
+  .text_section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .text_section p {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .carusel_div {
+    grid-template-columns: auto auto;
+    gap: 30px;
+  }
+  .each_scroll_div {
+    width: 100%;
+  }
+  .each_scroll_div.second {
+    height: auto;
+    width: 100%;
+    grid-row: 1/3;
+    display: grid;
+  }
+  .grid_card_content {
+    align-self: self-end;
+  }
+  .each_scroll_div h3 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+  }
+  .section_numbers {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .section_offers {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .slider {
+    margin-bottom: 36px;
+  }
+  .slideImg {
+    height: 201px;
+  }
+  .slider_content_div {
+    padding: 20px;
+  }
+  .slider_content_div h2 {
+    font-size: 14px;
   }
 }
