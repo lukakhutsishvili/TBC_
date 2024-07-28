@@ -19,43 +19,43 @@
   font-style: normal;
 }
 
-.header {
-  position: sticky;
-  top: 0;
-  background: #333;
-  color: #fff;
-  padding: 10px;
-  z-index: 1000; /* Ensure it stays above other content */
-}
-.main-content {
-  height: 300px; /* Adjust as needed */
-  overflow: hidden;
-  position: relative;
-}
-.scrollable-content {
-  height: 100%;
-  overflow-y: scroll;
-  padding-right: 10px; /* Add space for scrollbar */
-  box-sizing: content-box; /* Ensure padding doesn't affect size */
-}
-/* Custom scrollbar styles */
-.scrollable-content::-webkit-scrollbar {
-  width: 8px;
-}
-.scrollable-content::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-.scrollable-content::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+.blue_button:hover {
+  background-color: black;
+  transition-duration: 0.5s;
+  cursor: pointer;
+}
+
+.subscribe {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: color 4s linear, fill 4s linear;
+}
+
+.subscribe p {
+  color: #182cc0;
+  transition: color 0.5s linear;
+}
+
+.subscribe svg path {
+  fill: #182cc0;
+  transition: fill 0.5s linear;
+}
+
+.subscribe:hover p {
+  color: #4351e7;
+}
+
+.subscribe:hover svg path {
+  fill: #4351e7;
+}
 .headerlogo-tablet {
   display: none;
 }
@@ -265,16 +265,17 @@ h2 {
   position: absolute;
   top: 80px;
   width: 100%;
-  transition: opacity 0.6s linear;
-  z-index: 50;
+  transition: opacity 0.6s linear, z-index 0.6s linear;
+  z-index: -1;
 }
 #menu:nth-child(1) {
-  transition: opacity 0.6s linear;
+  transition: opacity 0.6s linear, z-index 0.6s linear;
   background-color: #fff;
 }
 
 #menu.open {
   opacity: 1;
+  z-index: 50;
 }
 
 .mobile_menu_dropdown_div {
@@ -414,7 +415,7 @@ h2 {
   display: flex;
 }
 .blue_button {
-  background-image: linear-gradient(15deg, #001682, #3240e5);
+  background: #182cc0;
   column-gap: 6px;
   color: #fff;
   text-transform: uppercase;
@@ -426,8 +427,12 @@ h2 {
   font-weight: 700;
   line-height: 1.33;
   display: flex;
+  transition: 0.4s linear;
 }
 
+.blue_button:hover {
+  background: #007aff;
+}
 .banner {
   position: absolute;
   width: 100%;
@@ -1129,7 +1134,8 @@ h2 {
   border-radius: 1px;
 }
 /* media 479 */
-.tablet {
+.tablet,
+.tabletchange {
   display: none;
 }
 
@@ -1376,6 +1382,7 @@ h2 {
   .tablet {
     display: block;
   }
+
   .first_section {
     margin-bottom: 50px;
     margin-left: 45px;
@@ -1829,6 +1836,9 @@ h2 {
 
   .third_drop {
     bottom: -199px;
+  }
+  .tabletchange {
+    display: flex;
   }
 }
 

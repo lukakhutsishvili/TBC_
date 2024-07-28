@@ -783,6 +783,17 @@ document.addEventListener("DOMContentLoaded", () => {
         activeDropdown = dropdownMenu;
       }
     });
+
+    // Add hover effect
+    const dropdownItems = trigger.querySelectorAll(".dropdown_menu p");
+    dropdownItems.forEach((item) => {
+      item.addEventListener("mouseover", () => {
+        item.style.color = "blue";
+      });
+      item.addEventListener("mouseout", () => {
+        item.style.color = ""; // Reset to default
+      });
+    });
   });
 });
 
