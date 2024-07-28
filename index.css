@@ -28,7 +28,9 @@
 .headerlogo-tablet {
   display: none;
 }
-
+.buy_divs {
+  display: none;
+}
 img {
   -webkit-user-drag: none;
   -webkit-user-drag: none;
@@ -1376,6 +1378,7 @@ h2 {
     height: auto;
     width: 100%;
     grid-row: 1/3;
+    grid-column: 2;
     display: grid;
   }
   .grid_card_content {
@@ -1543,7 +1546,10 @@ h2 {
 }
 
 @media (min-width: 991px) {
-  .header_menu_button {
+  #header_menu_button {
+    display: none;
+  }
+  .download_button {
     display: none;
   }
   .header_desktop_text {
@@ -1563,5 +1569,117 @@ h2 {
   .text_section {
     padding-top: 60px;
     padding-bottom: 60px;
+  }
+  .text_section p {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .each_scroll_div {
+    min-width: 433px;
+    min-height: 256px;
+    padding: 40px;
+  }
+  .first_scroll_section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .carusel_div {
+    margin-top: 36px;
+  }
+  .section_numbers {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  .section_numbers {
+    flex-direction: row;
+    column-gap: 30px;
+  }
+  .section_offers {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .slider {
+    margin-top: 36px;
+  }
+  .slideImg {
+    min-height: 270px;
+    min-width: 441px;
+  }
+
+  .buy_divs {
+    display: flex;
+    max-width: 284px;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+  .buy_divs div {
+    width: 134px;
+    height: 57px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+  }
+  .appstore img {
+    margin: 0px;
+  }
+  .tablet_get-app-image {
+    height: 336px;
+  }
+  .tablet_get-app-image img {
+    height: 336px;
+    width: 270px;
+  }
+  .tablet_content_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .offers_swiper_slide img {
+    width: 452px;
+    height: 277px;
+    object-fit: cover;
+  }
+  .offers_swiper_indicator-container {
+    margin-top: 38px;
+  }
+  .section_home-hero {
+    padding: 80px;
+  }
+  .section_awards-swiper {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .section_awards_slide {
+    min-width: 441px;
+    min-height: 239px;
+  }
+  #footer {
+    padding-top: 60px;
+  }
+  .footer_top {
+    padding-top: 45px;
+    padding-bottom: 50px;
+  }
+  .footer_footer {
+    background-color: white;
+  }
+  .footer_mobile_contacts {
+    margin-right: 50px;
+  }
+}
+
+@media (min-width: 1100px) {
+  #header {
+    max-width: 1100px;
+  }
+  .displayDiv {
+    max-width: 1100px;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
 }
